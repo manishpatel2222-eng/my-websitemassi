@@ -4,26 +4,25 @@ import { fileURLToPath } from 'url';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Fix: __dirname is not available in ES modules environment, derived from import.meta.url
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/Translation-to-English/', 
+      // Set to '/' for Vercel root deployments
+      base: '/', 
       server: {
         port: 3000,
         host: '0.0.0.0',
       },
       plugins: [react()],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY || env.API_KEY),
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || env.API_KEY)
       },
       resolve: {
         alias: {
-          // Fix: Use the derived __dirname for path resolution
           '@': path.resolve(__dirname, '.'),
         }
       }
