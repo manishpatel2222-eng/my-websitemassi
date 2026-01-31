@@ -1,0 +1,7 @@
+{
+  "name": "Massi's Handmade in Home Khakhra",
+  "description": "An authentic, healthy, and premium web store for traditional Gujarati Khakhra (Methi and Zeera flavors). Features a lively interface, health-focused content, and a seamless ordering system.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
